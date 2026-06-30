@@ -3,27 +3,31 @@ package com.vibin.dsa.linkedlist;
 public class LinkedList {
 
     Node head = null;
-    Node curr = null;
+    Node tail = null;
 
     void add(int value){
 
         if(head==null){
             head = new Node(value);
-            curr = head;
+            tail = head;
         }else {
-            curr.next = new Node(value);
-            curr = curr.next;
+            tail.next = new Node(value);
+            tail = tail.next;
         }
         display();
     }
 
     void deleteFromStart(){
 
-        if(head==null)
+        if(head==null){
             System.out.println("Linked is empty nothing to remove");
-
-        head = head.next;
-        display();
+        }else{
+            head = head.next;
+            if (head == null) {
+                tail = null; // if last element is being removed
+            }
+            display();
+        }
     }
 
     void display(){
@@ -31,7 +35,7 @@ public class LinkedList {
         while(temp!=null){
             System.out.print(temp.value);
             if(temp.next != null)
-            System.out.print(" -> ");
+                System.out.print(" -> ");
             temp = temp.next;
         }
         System.out.println();
